@@ -1,0 +1,35 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+spring:
+  data:
+    # Redis配置
+    redis:
+      host: 127.0.0.1
+      port: 6379
+      password: 123456
+      timeout: 3000 # Read timeout
+      database: 0
+  # 数据库配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver # 使用德鲁伊连接池
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://127.0.0.1:3306/springsecurity_demo?useSSL=false
+    username: root
+    password: yhx
+
+  #设置从数据库获取的实体类的日期格式和时区
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+# 配置jwt参数
+jwt:
+  key: thisisakey # 签名/密钥：用于生成与校验jwt
+  expire-time: 259200 # 多少秒后过期（默认：3天） 单位:秒
+
+# 配置redis过期时间
+redis-constant:
+  user-cache-ttl-minutes: 4320 # 用户信息缓存时间（默认：3天） 单位:分钟
