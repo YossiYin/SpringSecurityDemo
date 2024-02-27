@@ -1,6 +1,6 @@
 # 环境/依赖介绍
 
-+ JDK 17.0.1
++ JDK 17.0.10
 + Springboot 3.0.2
 + SpringSecurity 6.0.1
 + redis
