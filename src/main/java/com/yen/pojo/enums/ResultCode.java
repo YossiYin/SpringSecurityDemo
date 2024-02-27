@@ -1,4 +1,4 @@
-package com.yen.enums;
+package com.yen.pojo.enums;
 
 /**
  * API返回码封装类

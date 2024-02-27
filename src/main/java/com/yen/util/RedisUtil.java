@@ -71,4 +71,13 @@ public class RedisUtil {
         String json = objectMapper.writeValueAsString(value);
         stringRedisTemplate.opsForValue().set(key,json,1,TimeUnit.DAYS);
     }
+
+    /**
+     * 通过key删除
+     *
+     * @param key 键
+     */
+    public boolean remove(String key) {
+        return  stringRedisTemplate.delete(key);
+    }
 }

@@ -13,7 +13,7 @@ import org.springframework.web.servlet.HandlerExceptionResolver;
 import java.io.IOException;
 
 /**
- * 处理认证失败后的异常
+ * 处理认证失败后的异常（如未登录）
  * 注意这个是过滤器中的
  * 如未登录就调用保护的接口
  * 注意：

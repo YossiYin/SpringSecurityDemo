@@ -1,6 +1,7 @@
 package com.yen.config.security;
 
 import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.exceptions.ValidateException;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.jwt.JWT;
 import cn.hutool.jwt.JWTValidator;
@@ -11,10 +12,12 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
+import org.springframework.web.servlet.HandlerExceptionResolver;
 
 import java.io.IOException;
 
@@ -35,6 +38,13 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     @Resource
     private RedisUtil redisUtil;
+
+    /**
+     * 通过该类的resolveException方法抛出自定义异常交给全局异常处理器处理
+     */
+    @Resource
+    @Qualifier("handlerExceptionResolver")
+    private HandlerExceptionResolver resolver;
 
     /**
      * 自定义过滤器方法
@@ -63,9 +73,16 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         // 2.校验token
         // 2.1 验证算法(默认使用hs256算法),会校验密钥/签名,验证失败会抛出异常
         // 2.2 验证时间(由于只定义了失效时间("exp")，因此只检查失效时间)
-        JWTValidator.of(token)
-                .validateAlgorithm(JWTSignerUtil.hs256(KEY.getBytes()))
-                .validateDate(DateUtil.date());
+        try {
+            JWTValidator.of(token)
+                    .validateAlgorithm(JWTSignerUtil.hs256(KEY.getBytes()))
+                    .validateDate(DateUtil.date());
+            // 校验通过
+        } catch (Exception e) {
+            // JWT校验失败
+            resolver.resolveException(request, response, null,e);
+            return;
+        }
 
         // 3.解析token获取用户UUID
         JWT jwt = JWT.of(token);

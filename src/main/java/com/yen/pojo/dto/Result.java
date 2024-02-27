@@ -1,5 +1,5 @@
 package com.yen.pojo.dto;
-import com.yen.enums.ResultCode;
+import com.yen.pojo.enums.ResultCode;
 
 import java.io.Serializable;
 
