@@ -33,3 +33,22 @@ jwt:
 # 配置redis过期时间
 redis-constant:
   user-cache-ttl-minutes: 4320 # 用户信息缓存时间（默认：3天） 单位:分钟
+
+# 接口文档相关
+# springdoc-openapi项目配置 http://localhost:8080/api/swagger-ui.html
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    operations-sorter: alpha
+  api-docs:
+    path: /v3/api-docs
+  group-configs:
+    - group: 'default'
+      paths-to-match: '/**'
+      packages-to-scan: com.yen.controller
+# knife4j的增强配置，不需要增强可以不配 地址：http://localhost:8080/api/doc.html
+knife4j:
+  enable: true
+  setting:
+    language: zh_cn

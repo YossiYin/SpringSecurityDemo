@@ -67,6 +67,8 @@ public class SpringSecurityConfig {
         // 3.配置请求认证机制
         http.authorizeHttpRequests()
                 .requestMatchers("/", "/base/**", "/error", "/user/login", "/user/register").permitAll()
+                // 放行Knife4j相关请求
+                .requestMatchers("/doc.html","/webjars/**","/v3/api-docs/**","/swagger-ui.html","/swagger-ui/**").permitAll()
                 // 除以上地址以外都需要认证
                 .anyRequest().authenticated();
 

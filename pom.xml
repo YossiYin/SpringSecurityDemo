@@ -31,6 +31,13 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- knife4j 内置接口文档 Swagger2 + OpenAPI3 -->
+        <dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
+            <version>4.5.0</version>
+        </dependency>
+
         <!-- SpringSecurity -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

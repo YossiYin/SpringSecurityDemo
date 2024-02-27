@@ -3,6 +3,7 @@
 + JDK 17.0.10
 + Springboot 3.0.2
 + SpringSecurity 6.0.1
++ knife4j-openapi3
 + redis
 + mysql8
 + mybatis-plus 3.0
@@ -25,6 +26,14 @@
 默认用户账号名：user
 密码：123456
 ```
+
+# knife4j
+
+swagger-ui地址：http://localhost:8080/api/swagger-ui.html
+
+knife4j：http://localhost:8080/api/doc.html
+
+
 
 
 
