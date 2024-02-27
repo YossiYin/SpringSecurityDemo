@@ -19,6 +19,7 @@
 + 使用了redis存储用户信息（key:uuid）
 + 异常处理：将原本的AccessDeniedHandler和AuthenticationEntryPoint过滤器中的异常处理委托给HandlerExceptionResolver，实现了全局异常处理器也能进行处理
 + 使用了SpringSecurity的全新写法，无使用废弃方法。
++ 实现了日志拦截器实现了日志记录功能
 
 ```
 默认用户账号名：user
