@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -25,6 +26,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity    // 添加 security 过滤器
+@EnableMethodSecurity // 开启方法级别的权限控制
 public class SpringSecurityConfig {
 
     /**
@@ -69,6 +71,8 @@ public class SpringSecurityConfig {
                 .requestMatchers("/", "/base/**", "/error", "/user/login", "/user/register").permitAll()
                 // 放行Knife4j相关请求
                 .requestMatchers("/doc.html","/webjars/**","/v3/api-docs/**","/swagger-ui.html","/swagger-ui/**").permitAll()
+                // 权限控制 TODO 如何通过？
+                .requestMatchers("/user/is-admin").hasRole("admin")
                 // 除以上地址以外都需要认证
                 .anyRequest().authenticated();
 

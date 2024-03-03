@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
  * 安全用户类
  * springSecurity框架所需的用户类，里面需要有框架所需的字段(账号、密码、权限、状态等)、方法。
  * 注意：
- * 1.重写的几个方法中有些方法需要返回true
+ * 1.重写的几个方法中有些方法需要返回true（以后可以根据业务需求自定义方法：isEnabled()、isAccountNonLocked()等等...）
  * 2.authorities字段不允许序列化会报错，所以要配置忽略序列化。（特别是在存入redis的场景中）
  * 3.@JsonIgnoreProperties是为了jackson正常序列化
  *
