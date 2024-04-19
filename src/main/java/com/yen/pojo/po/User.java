@@ -6,21 +6,14 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.util.Date;
-
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 /**
  * 
- * @TableName user
+ * @TableName sys_user
  */
-@TableName(value ="user")
+@TableName(value ="sys_user")
 @Data
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
 public class User implements Serializable {
     /**
      * 主键Id
@@ -29,7 +22,7 @@ public class User implements Serializable {
     private Integer id;
 
     /**
-     * 唯一Id：10位随机数字
+     * 唯一Id
      */
     private String uuid;
 
